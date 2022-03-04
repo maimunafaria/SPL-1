@@ -91,19 +91,19 @@ int main()
                     if (checkKeyword(word)==true)
                       {cout << " KEYWORD" <<endl; flag = true;
 
-                          my_File1[i]<< "_Keyword";
+                          my_File1[i]<< "_KW";
                            ch = nextchar;
                       }
                     if (checkPreProcessor(word)==true)
                        {cout << " Preprocessor" <<endl; flag = true;
 
-                            my_File1[i]<< "_PreProcessor";
+                            my_File1[i]<< "_PP";
                              ch = nextchar;
                        }
                     if (checkHeaderFile(word)==true)
                         {cout << " Headerfile" <<endl; flag = true;
 
-                            my_File1[i]<< "_HeaderFile";
+                            my_File1[i]<< "_HF";
                              ch = nextchar;
                         }
                     if (checkPrintf(word)==true)
@@ -115,7 +115,7 @@ int main()
                                 }
                             flag = true;
 
-                            my_File1[i]<< "_Token";
+                            my_File1[i]<< "_TK";
 
                             }
 
@@ -124,7 +124,7 @@ int main()
                 if(flag == false)
                     {cout << " IDENTIFIER" <<endl;
 
-                            my_File1[i]<< "_Identifier";
+                            my_File1[i]<< "_ID";
                              ch = nextchar;
                     }
 
@@ -139,24 +139,25 @@ int main()
                     nextchar = my_File[i].get();
                 }
                cout << word<< "number "<<endl;
-                            my_File1[i]<< "_Number";
+                            my_File1[i]<< "_NUM";
                 ch = nextchar;
             }
         {if(isPuncuators(ch)==true)
         {
           cout<<ch<<"puncuators"<<endl;
-                                    my_File1[i]<< "_Puncuators";
+                                    my_File1[i]<< "_PUN";
 
         }
         if(isOperator(ch)==true)
         {
            cout<<ch<<"operators"<<endl;
-                                     my_File1[i]<< "_Operators";
+                                     my_File1[i]<< "_OP";
         }
         }
 }
     my_File[i].close();
     my_File1[i].close();
+
 }
 
 }
