@@ -1,1 +1,1 @@
-#include<stdio.h>int main(){int a=20,A=444, ANS=0;ANS=a+A;printf("ans is " , ANS);}
+#include<stdio.h>int functionadd(int a ,int b){    int ans=a+b;    return ans;}int main(){    int a[10] , i,count;    for(i=0;i<10;i++)    {        a[i]=i;printf("%d",a[i]);count++;    }}
