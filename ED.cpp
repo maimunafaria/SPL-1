@@ -12,7 +12,6 @@ int Mystrlen(string a)
     }
     return length;
 }
-
 string Mystrcpy(string a ,string b)
 {
     a=b;
@@ -26,7 +25,7 @@ string Mystrcat(string a ,string b)
 string hashfilename(int i)
 {   int l;
     string ans;
-    string a="D:/New folder (3)/file7/New";
+    string a="D:/New folder (2)/file7/New";
     string b=".c";
     string c=to_string(i);
     a=Mystrcat(a,c);
@@ -65,15 +64,12 @@ int editDistance(string x , string y , int m , int n)
                  else if(c[i][j-1]<=c[i-1][j] && c[i][j-1]<=c[i-1][j-1])
                  {c[i][j]=1+c[i][j-1];
                  }}
-
-        }
+            }
     }
     return c[m][n];
-
 }
 int main()
 {
-
     int i,j;
     ifstream my_file[20];
     string x[20];
@@ -92,13 +88,26 @@ int main()
         for(j=i;j<5;j++)
         {
                 int a ,c;
-
             a=Mystrlen(x[i]);
             c=Mystrlen(x[j]);
         int ed = editDistance(x[i],x[j],a,c);
-        cout<<"Number of edit distance between "<< i << " and " << j << " is " <<ed<<endl;
-
+       // cout<<"Number of edit distance between "<< i << " and " << j << " is " <<ed<<endl;
+        int maxlength;
+        if (a>=c)
+        {
+            maxlength=a;
         }
-    }
+        else
+        {
+            maxlength=c;
+        }
+        double percentage;
+        percentage=(double(maxlength)-double(ed))/double(maxlength)*100;
+      //  cout<<"percentage of code clone between " <<i << " and " << j << " is " <<percentage<< "%"<<endl;
+        cout<<"\t\t\t"<<" Percentage of code clone between "<<"\t\t"<<endl;
+        cout<<"\t\t\t"<<"    File No: "<<i<< " and " << "File No: "<<j<<"\t\t"<<endl;
+        cout<<"\t\t\t\t"<< " is " <<percentage<< "%"<<"\t\t\n"<<endl;
 
+}
+}
 }
