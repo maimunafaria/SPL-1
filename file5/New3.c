@@ -1,16 +1,16 @@
 #include<stdio.h>
 
-int functionadd(int a ,int b)
+int add(int x ,int y)
 {
-    int ans=a+b;
-    return ans;
+    int a=x+y;
+    return a;
 }
 
 int main()
 {
-    int a[10] , i;
-    for(i=0;i<10;i++)
+    int b[10] , j;
+    for(j=1;j<11;j++)
     {
-        a[i]=i;
+        b[j]=j;
     }
 }

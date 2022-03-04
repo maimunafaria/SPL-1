@@ -1,9 +1,19 @@
 #include<stdio.h>
-int main()
+
+int functionadd(int a ,int b)
 {
-// to print hello
-/* to print
-hello */
-printf("hello");
+    int ans=a+b;
+    return ans;
 }
 
+int main()
+{
+    int a[10] , i,count;
+    for(i=0;i<10;i++)
+    {
+        a[i]=i;
+	count++;
+	printf("%d",a[i]);
+	
+    }
+}
