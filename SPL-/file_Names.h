@@ -1,39 +1,38 @@
-#ifndef FILE_NAMES_H_INCLUDED
-#define FILE_NAMES_H_INCLUDED
+
 #include"string_Functions.h"
+using namespace std;
 
-
-
-#endif // FILE_NAMES_H_INCLUDED
-
-string inputfilename(int i)
+string inputfilename(string h,int i)
 {   int l;
     string ans;
-    string a="file5/New";
+    string a="file5/";
     string b=".c";
     string c=to_string(i);
+    a=Mystrcat(a,h);
     a=Mystrcat(a,c);
     a=Mystrcat(a,b);
     ans=Mystrcpy(ans,a);
     return ans;
     }
-string outputfilename(int i)
+string outputfilename(string h,int i)
 {   int l;
     string ans;
-    string a="file6/New";
+    string a="file6/";
     string b=".c";
     string c=to_string(i);
+    a=Mystrcat(a,h);
     a=Mystrcat(a,c);
     a=Mystrcat(a,b);
     ans=Mystrcpy(ans,a);
     return ans;
     }
-string hashfilename(int i)
+string hashfilename(string h,int i)
 {   int l;
     string ans;
-    string a="file7/New";
+    string a="file7/";
     string b=".c";
     string c=to_string(i);
+    a=Mystrcat(a,h);
     a=Mystrcat(a,c);
     a=Mystrcat(a,b);
     ans=Mystrcpy(ans,a);

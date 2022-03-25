@@ -1,10 +1,6 @@
-#ifndef STRING_FUNCTIONS_H_INCLUDED
-#define STRING_FUNCTIONS_H_INCLUDED
-
-
-
-#endif // STRING_FUNCTIONS_H_INCLUDED
+#include<cstring>
 using namespace std;
+
 int Mystrcmp(string a , string b)
 {
     int x = a.compare(b);
@@ -36,3 +32,14 @@ string Mystrcat(string a ,string b)
     a=a+b;
     return a;
 }
+
+
+char *stringToChar(string a)
+{
+
+    int n = Mystrlen(a);
+
+    char char_array[n+1];
+
+    strcpy(char_array, a.c_str());
+    return (char *)char_array;}

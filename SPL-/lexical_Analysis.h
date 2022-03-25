@@ -1,9 +1,4 @@
-#ifndef LEXICAL_ANALYSIS_H_INCLUDED
-#define LEXICAL_ANALYSIS_H_INCLUDED
 
-
-
-#endif // LEXICAL_ANALYSIS_H_INCLUDED
 using namespace std;
 bool isOperator(char x)
 {
@@ -173,7 +168,7 @@ bool checkPrintf(string str)
 }
 
 
-void lexicalAnalysis()
+void lexicalAnalysis(string name)
 {   char ch1;
     string hashFile;
     string output2;
@@ -182,10 +177,12 @@ void lexicalAnalysis()
     char ch;
     int i,j;
     for(i=0;i<5;i++){
-    my_File[i].open(output2=outputfilename(i), ios::in);
-    my_File1[i].open(hashFile=hashfilename(i) , ios::out);
+    my_File[i].open(output2=outputfilename(name,i), ios::in);
+
     if (!my_File[i]) {
-		cout << "File not created";}
+		cout << "File not created";
+		break;}
+    my_File1[i].open(hashFile=hashfilename(name,i) , ios::out);
 		if (!my_File1[i]) {
 		cout << "File not created";}
    while(!my_File[i].eof()){

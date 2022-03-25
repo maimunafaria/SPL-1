@@ -1,12 +1,8 @@
-#ifndef OUTPUT_FILE_H_INCLUDED
-#define OUTPUT_FILE_H_INCLUDED
+
 #include"file_Names.h"
 
-
-
-#endif // OUTPUT_FILE_H_INCLUDED
 using namespace std;
-void outputFileCreate()
+void outputFileCreate(string name)
 {
     int i;
     ifstream my_file[20];
@@ -15,11 +11,12 @@ void outputFileCreate()
     ofstream my_File1[20];
     for(i=0;i<5;i++)
 	{string input;
-    my_file[i].open(input=inputfilename(i), ios::in);
+    my_file[i].open(input=inputfilename(name,i), ios::in);
 	if (!my_file[i]) {
-		cout << "File not created";}
+		cout << "File not created";
+		break;}
 	string output;
-    my_file1[i].open(output=outputfilename(i), ios::out);
+    my_file1[i].open(output=outputfilename(name,i), ios::out);
 	if (!my_file1[i]) {
 		cout << "File not created";}
     char ch,a,b,c;
