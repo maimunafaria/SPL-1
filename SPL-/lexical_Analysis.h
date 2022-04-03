@@ -1,5 +1,26 @@
 
+
 using namespace std;
+int isDigit(char ch)
+{
+
+    if(ch>=48 && ch<=57)
+    {return 0;}
+    else
+    {return 1;}
+}
+
+int isAlpha(char ch)
+{
+
+    if(ch>=65 && ch<=90)
+    {return 0;}
+    else if(ch>=97 && ch<=122)
+    {return 0;}
+    else
+    {return 1;}
+}
+
 bool isOperator(char x)
 {
     switch (x)
@@ -188,12 +209,12 @@ void lexicalAnalysis(string name)
    while(!my_File[i].eof()){
 
    		ch = my_File[i].get();
-        if(isalpha(ch)){
+   		 if((isAlpha(ch))==0){
                 std::string word = "";
                 word += ch;
                 char nextchar = my_File[i].get();
-                while(isalpha(nextchar)||
-                      isdigit(nextchar) ||
+                while((isAlpha(nextchar))==0||
+                      (isDigit(nextchar))==0 ||
                        nextchar=='_'){
                     word += nextchar;
                     nextchar = my_File[i].get();
@@ -244,11 +265,12 @@ void lexicalAnalysis(string name)
                     }
 
             }
-        if(isdigit(ch)){
+
+            if((isDigit(ch))==0){
                 std::string word = "";
                 word += ch;
                 char nextchar = my_File[i].get();
-                while(isdigit(nextchar)||
+                while((isDigit(nextchar))==0||
                        nextchar=='.'){
                     word += nextchar;
                     nextchar = my_File[i].get();
