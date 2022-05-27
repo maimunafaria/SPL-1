@@ -1,6 +1,11 @@
 
-
+#include <vector>
 using namespace std;
+
+    vector<string>variable[20];
+    vector<string>loop[20];
+    vector<string>condition[20];
+
 int isDigit(char ch)
 {
 
@@ -75,9 +80,6 @@ bool isPuncuators(char x)
         case '.':
         {return true;}
 
-        case '(':
-        {return true;}
-
         case ')':
         {return true;}
 
@@ -109,9 +111,7 @@ bool isPuncuators(char x)
 
 bool checkKeyword(string str)
 {
-    if (Mystrcmp(str, "if")==0
-        || Mystrcmp(str, "else")==0
-        ||Mystrcmp(str, "while")==0
+    if ( Mystrcmp(str, "else")==0
          || Mystrcmp(str, "do")==0
         ||Mystrcmp(str, "break")==0
         ||  Mystrcmp(str, "continue")==0
@@ -149,11 +149,11 @@ bool checkKeyword(string str)
 
 bool checkHeaderFile(string str)
 {
-    if (Mystrcmp(str, "stdio")==0
-        ||Mystrcmp(str, "conio")==0
-        ||Mystrcmp(str, "math")==0
-        ||Mystrcmp(str, "stdlib")==0
-        ||Mystrcmp(str, "string")==0 )
+    if (Mystrcmp(str, "stdio.h")==0
+        ||Mystrcmp(str, "conio.h")==0
+        ||Mystrcmp(str, "math.h")==0
+        ||Mystrcmp(str, "stdlib.h")==0
+        ||Mystrcmp(str, "string.h")==0 )
         {
             return true;
         }
@@ -188,6 +188,53 @@ bool checkPrintf(string str)
     }
 }
 
+bool checkScanf(string str)
+{
+    if (Mystrcmp(str, "scanf")==0)
+        {
+                return true;
+        }
+    else
+    {
+        return false;
+    }
+}
+bool checkLoop(string str)
+{
+    char* token = "Empty";
+    if (Mystrcmp(str, "for")==0
+        || Mystrcmp(str, "while")==0)
+        {
+                return true;
+        }
+    else
+    {
+        return false;
+    }
+}
+bool checkCondition(string str)
+{
+    char* token = "Empty";
+    if (Mystrcmp(str, "if")==0)
+        {
+                return true;
+        }
+    else
+    {
+        return false;
+    }
+}
+bool isBracket(char x)
+{
+    switch (x)
+    {   case '(':
+        {return true;}
+
+        default:
+        {return false;}
+    }
+}
+
 
 void lexicalAnalysis(string name)
 {   char ch1;
@@ -195,6 +242,7 @@ void lexicalAnalysis(string name)
     string output2;
     ifstream my_File[20];
     ofstream my_File1[20];
+
     char ch;
     int i,j;
     for(i=0;i<5;i++){
@@ -209,13 +257,27 @@ void lexicalAnalysis(string name)
    while(!my_File[i].eof()){
 
    		ch = my_File[i].get();
+   		 if((isDigit(ch))==0){
+                std::string word = "";
+                word += ch;
+                char nextchar = my_File[i].get();
+                while((isDigit(nextchar))==0||
+                       nextchar=='.'){
+                    word += nextchar;
+                    nextchar = my_File[i].get();
+                }
+            //   cout << word<< "number "<<endl;
+                            my_File1[i]<< "_NM ";
+                ch = nextchar;
+            }
    		 if((isAlpha(ch))==0){
                 std::string word = "";
                 word += ch;
                 char nextchar = my_File[i].get();
                 while((isAlpha(nextchar))==0||
                       (isDigit(nextchar))==0 ||
-                       nextchar=='_'){
+                       nextchar=='_'||
+                       nextchar=='.'){
                     word += nextchar;
                     nextchar = my_File[i].get();
                 }
@@ -225,21 +287,37 @@ void lexicalAnalysis(string name)
                       {//cout << " KEYWORD" <<endl;
                       flag = true;
 
-                          my_File1[i]<< "_KW";
+                          my_File1[i]<< "_KW ";
                            ch = nextchar;
                       }
                     if (checkPreProcessor(word)==true)
                        {//cout << " Preprocessor" <<endl;
                         flag = true;
 
-                            my_File1[i]<< "_PP";
+                         //   my_File1[i]<< "_PP";
                              ch = nextchar;
                        }
                     if (checkHeaderFile(word)==true)
                         {//cout << " Headerfile" <<endl;
                         flag = true;
 
-                            my_File1[i]<< "_HF";
+                           // my_File1[i]<< "_HF";
+                             ch = nextchar;
+                        }
+                    if (checkLoop(word)==true)
+                        {//cout << " Loop" <<endl;
+                            flag = true;
+
+                            my_File1[i]<< "_LP ";
+                            loop[i].push_back(word);
+                             ch = nextchar;
+                        }
+                        if (checkCondition(word)==true)
+                        {//cout << " Condition" <<endl;
+                            flag = true;
+
+                            my_File1[i]<< "_CN ";
+                            condition[i].push_back(word);
                              ch = nextchar;
                         }
                     if (checkPrintf(word)==true)
@@ -251,50 +329,66 @@ void lexicalAnalysis(string name)
                                 }
                             flag = true;
 
-                            my_File1[i]<< "_TK";
+                           // my_File1[i]<< "_PK";
 
                             }
+                    if (checkScanf(word)==true)
+                      {//cout << " scanf" <<endl;
+                            ch1= my_File[i].get();
+                                while((ch1= my_File[i].get())!=';')
+                                {
+                                    ;
+                                }
+                            flag = true;
 
+                         //   my_File1[i]<< "_SK";
+
+                            }
 
 
                 if(flag == false)
                     {//cout << " IDENTIFIER" <<endl;
 
-                            my_File1[i]<< "_ID";
+                            my_File1[i]<< "_ID ";
+                             variable[i].push_back(word);
                              ch = nextchar;
                     }
 
             }
-
-            if((isDigit(ch))==0){
-                std::string word = "";
-                word += ch;
-                char nextchar = my_File[i].get();
-                while((isDigit(nextchar))==0||
-                       nextchar=='.'){
-                    word += nextchar;
-                    nextchar = my_File[i].get();
-                }
-            //   cout << word<< "number "<<endl;
-                            my_File1[i]<< "_NUM";
-                ch = nextchar;
-            }
         {if(isPuncuators(ch)==true)
         {
     //      cout<<ch<<"puncuators"<<endl;
-                                    my_File1[i]<< "_PUN";
+                                    my_File1[i]<< "_PU ";
 
         }
         if(isOperator(ch)==true)
         {
      //      cout<<ch<<"operators"<<endl;
-                                     my_File1[i]<< "_OP";
+                                     my_File1[i]<< "_OP ";
+        }
+        if(isBracket(ch)==true)
+        {
+    //      cout<<ch<<"Puncuators"<<endl;
+                                     my_File1[i]<< "_PB ";
         }
         }
 }
     my_File[i].close();
     my_File1[i].close();
-
 }
 
+
 }
+int numberOfLoop(int i)
+{
+    return loop[i].size();
+}
+int numberOfCondition(int i)
+{
+    return condition[i].size();
+}
+int numberOfVariable(int i)
+{
+    return variable[i].size();
+}
+

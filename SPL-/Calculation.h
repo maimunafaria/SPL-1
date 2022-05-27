@@ -1,9 +1,4 @@
-#ifndef CALCULATION_H_INCLUDED
-#define CALCULATION_H_INCLUDED
 
-
-
-#endif // CALCULATION_H_INCLUDED
 using namespace std;
 void calculation(int i, int j,int a,int b ,int ed)
 {  //i and j are the file number , a and b are the string length of the files

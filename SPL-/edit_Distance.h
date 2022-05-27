@@ -1,9 +1,4 @@
-#ifndef EDIT_DISTANCE_H_INCLUDED
-#define EDIT_DISTANCE_H_INCLUDED
 
-
-
-#endif // EDIT_DISTANCE_H_INCLUDED
 using namespace std;
 int editDistance(string x , string y , int m , int n)
 {

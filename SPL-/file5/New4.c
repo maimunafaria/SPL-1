@@ -1,19 +1,30 @@
 #include<stdio.h>
 
-int functionadd(int a ,int b)
-{
-    int ans=a+b;
-    return ans;
-}
-
 int main()
 {
-    int a[10] , i,count;
-    for(i=0;i<10;i++)
+    int a, b, c;
+    scanf("%d%d%d", &a,&b,&c) ;
+
+    if (a<b)
     {
-        a[i]=i;
-	count++;
-	printf("%d",a[i]);
-	
+        int temp= a ;
+        a=b ;
+        b=temp ;
     }
+
+    if (a<c)
+    {
+        int temp = a ;
+        a = c ;
+        c = temp ;
+    }
+
+    if (b<c)
+    {
+        int temp = b ;
+        b = c ;
+        c = temp ;
+    }
+
+    printf("%d %d %d\n", a, b, c) ;
 }
