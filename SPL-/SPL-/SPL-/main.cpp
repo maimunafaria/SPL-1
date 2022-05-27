@@ -21,7 +21,46 @@ int main()
     int number;
     cin>>number;
     if(number==1)
-    {swm(fileName);}
+    {
+        swm(fileName);
+    for(i=0;i<5;i++)
+    {
+        for(j=i+1;j<5;j++)
+        {
+
+            if(numberOfCondition(i)==numberOfCondition(j) &&
+               numberOfLoop(i)==numberOfLoop(j) &&
+               numberOfVariable(i)==numberOfVariable(j)
+               )
+            {
+                cout<<"Code clone percentage between file no " <<i << " and " <<j << " is very high\n" ;
+            }
+            else if(numberOfCondition(i)!=numberOfCondition(j) &&
+               numberOfLoop(i)!=numberOfLoop(j) &&
+               numberOfVariable(i)!=numberOfVariable(j)
+               )
+            {
+                cout<<"Code clone percentage between file no " <<i << " and " <<j << " is very low\n" ;
+            }
+            else if(numberOfCondition(i)==numberOfCondition(j) && numberOfLoop(i)==numberOfLoop(j) &&
+               numberOfVariable(i)!=numberOfVariable(j) || numberOfCondition(i)==numberOfCondition(j) &&
+               numberOfLoop(i)!=numberOfLoop(j) && numberOfVariable(i)==numberOfVariable(j) ||
+                numberOfCondition(i)!=numberOfCondition(j) && numberOfLoop(i)==numberOfLoop(j) &&
+               numberOfVariable(i)!=numberOfVariable(j)
+               )
+               {
+                   cout<<"Code clone percentage between file no " <<i << " and " <<j << " is high\n" ;
+               }
+            else
+            {
+                 cout<<"Code clone percentage between file no " <<i << " and " <<j << " is low\n" ;
+            }
+
+
+        }
+    }
+    }
+
     else if(number==2)
     {for(i=0;i<5;i++)
     {string input1,input2;
